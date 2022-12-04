@@ -34,4 +34,15 @@
 - 객체 내부의 상태를 캡슐화하고 객체 간 오직 메시지를 통해서만 상호작용하도록 설계
 - `Audience`나 `TicketSeller`의 내부 변경이 `Theater`에 영향을 주지 않게 됨
     
+### step - 3
+- `Audience`가 `Bag`의 내부 상태를 알지 못하도록 변경
+- `TicketOffice`이 자율성을 갖도록 구현
+  - `TicketSeller`에서 `ticketOffice.getTicket()` 메서드 사용 대신 `TicketOffice`에 메시지를 던지도록 변경
 
+## 결과
+- `step - 3`의 경우 `TicketOffice`의 자율성은 높였지만<br>
+`TicketOffice`와 `Audience` 간 의존성이 생김
+- 트레이드오프를 고려한 적절한 설계 필요
+- 요구사항은 항상 변경될 수 있기 때문에, 변경에 용이한 설계가 필요함
+- 높은 결합도를 지닌 객체의 경우 수정되었을 때 버그를 동반할 가능성이 큼
+- 객체 간 의존성을 적절하게 조절한 설계가 필요
