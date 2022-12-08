@@ -1,6 +1,7 @@
 package vo;
 
 import policy.DefaultDiscountPolicy;
+import policy.DiscountPolicy;
 
 import java.time.Duration;
 
@@ -8,13 +9,13 @@ public class Movie {
     private String title;
     private Duration runningTime;
     private Money fee;
-    private DefaultDiscountPolicy defaultDiscountPolicy;
+    private DiscountPolicy discountPolicy;
 
     public Movie(String title, Duration runningTime, Money fee, DefaultDiscountPolicy defaultDiscountPolicy) {
         this.title = title;
         this.runningTime = runningTime;
         this.fee = fee;
-        this.defaultDiscountPolicy = defaultDiscountPolicy;
+        this.discountPolicy = defaultDiscountPolicy;
     }
 
     public Money getFee() {
@@ -22,6 +23,10 @@ public class Movie {
     }
 
     public Money calculateMovieFee(Screening screening) {
-        return fee.minus(defaultDiscountPolicy.calculateDiscountAmount(screening));
+        return fee.minus(discountPolicy.calculateDiscountAmount(screening));
+    }
+
+    public void changeDiscountPolicy(DiscountPolicy discountPolicy) {
+        this.discountPolicy = discountPolicy;
     }
 }
